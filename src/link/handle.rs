@@ -3,6 +3,7 @@
 use super::{
     LinkAddRequest, LinkDelPropRequest, LinkDelRequest, LinkGetRequest,
     LinkNewPropRequest, LinkSetRequest,
+    BondPortSetRequest,
 };
 use crate::Handle;
 
@@ -36,5 +37,9 @@ impl LinkHandle {
     /// Retrieve the list of links (equivalent to `ip link show`)
     pub fn get(&mut self) -> LinkGetRequest {
         LinkGetRequest::new(self.0.clone())
+    }
+
+    pub fn set_bond_port(&mut self, index: u32) -> BondPortSetRequest {
+        BondPortSetRequest::new(self.0.clone(), index)
     }
 }
